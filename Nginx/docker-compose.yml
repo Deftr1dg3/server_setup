@@ -1,0 +1,18 @@
+services:
+  reverse_proxy:
+    image: nginx:latest
+    container_name: reverse_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./acme-challenge:/usr/share/nginx/html/.well-known/acme-challenge:ro"
+      - "./cert/live/sethlab.net/fullchain.pem:/etc/nginx/cert/fullchain.pem:ro"
+      - "./cert/live/sethlab.net/privkey.pem:/etc/nginx/cert/privkey.pem:ro"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # "host" networking replicates '--network host'
+    # required to get access to local 127.0.0.1
+    network_mode: "host"
+    restart: unless-stopped

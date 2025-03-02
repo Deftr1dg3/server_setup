@@ -1,0 +1,8 @@
+
+.DS_Store   
+
+GitLab/config/
+GitLab/logs/  
+GitLab/data/  
+
+Nginx/cert/
