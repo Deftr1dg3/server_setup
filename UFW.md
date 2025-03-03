@@ -343,7 +343,7 @@ Allow Forwarding in UFW Configuration
 
 Edit /etc/default/ufw:
 
-    sudo nano /etc/default/ufw
+    sudo vim /etc/default/ufw
 
 Find the line DEFAULT_FORWARD_POLICY and set it to ACCEPT:
 
@@ -351,11 +351,29 @@ Find the line DEFAULT_FORWARD_POLICY and set it to ACCEPT:
 
 Save and exit.
 
-Allow Docker-Specific Forwarding in before.rules
+### Confirm IP forwarding is enabled at the kernel level
+
+Make sure:
+
+    sudo sysctl net.ipv4.ip_forward
+
+shows net.ipv4.ip_forward=1. If not, edit /etc/sysctl.conf or a file in /etc/sysctl.d/ to set:
+
+    net.ipv4.ip_forward=1
+
+### Set UFW rules
+
+    sudo ufw allow proto tcp from 172.18.0.0/16 to any port 8000
+
+    sudo ufw allow proto tcp from 172.17.0.0/16 to any port 8000
+
+to accept forwarding from docekr bridge networks.
+
+## Allow Docker-Specific Forwarding in before.rules
 
 Edit /etc/ufw/before.rules:
 
-    sudo nano /etc/ufw/before.rules
+    sudo vim /etc/ufw/before.rules
 
 Right after the \*filter line, you’ll likely see a section like this:
 
