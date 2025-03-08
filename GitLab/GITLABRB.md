@@ -4,6 +4,8 @@
 <!-- ---------------------------- -->
 <!-- ---------------------------- -->
 
+### file "./config/gitlab.rb"
+
 external_url 'http://git.sethlab.net/'
 
 # GitLab ssh port:

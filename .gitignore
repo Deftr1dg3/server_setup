@@ -1,7 +1,7 @@
 
 .DS_Store   
 
-# GitLab/config/
+GitLab/config/
 GitLab/logs/  
 GitLab/data/  
 GitLab/TestProject
