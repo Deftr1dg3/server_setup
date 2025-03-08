@@ -1,0 +1,27 @@
+
+# Default key for all connections
+Host *
+  IdentityFile ~/.ssh/id_rsa
+
+# Specific key for the root user on Remote Server 1
+Host de 
+  HostName 172.104.156.127 
+  User root  
+  IdentityFile ~/.ssh/id_rsa
+
+#Specific key for the admin user on Remote Server 2
+Host dewww 
+	HostName 172.104.156.127 
+	User www 
+	IdentityFile ~/.ssh/id_rsa 
+
+Host i5 
+	HostName 192.168.1.11 
+	User seth 
+	IdentityFile ~/.ssh/id_rsa 
+	
+# Host gb 
+# 	HostName 139.162.246.251
+# 	User root 
+# 	Port 45916
+# 	IdentityFile ~/.ssh/id_rsa 
