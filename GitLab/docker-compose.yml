@@ -5,24 +5,25 @@ services:
     # gitlab-ce => Community edition, gitlab-ee => Enterprise edition
     image: gitlab/gitlab-ce:17.7.6-ce.0
     container_name: gitlab
-    hostname: "gitlab.example.com"
+    # hostname: "git.sethlab.net"
     environment:
-      GITLAB_OMNIBUS_CONFIG: |
+      GITLAB_OMNIBUS_CONFIG:
         # Add any other gitlab.rb configuration here, each on its own line
         # This is the same as "gitlab.rb" file ...
         # external_url 'http://gitlab.example.com'
     ports:
       - "80:80"
-      # - "443:443"
+      - "443:443"
       - "2222:22"
     volumes:
       - "$GITLAB_HOME/config:/etc/gitlab"
       - "$GITLAB_HOME/logs:/var/log/gitlab"
-      - "gitlab-data:/var/opt/gitlab"
+      - "$GITLAB_HOME/data:/var/opt/gitlab"
+      # - "gitlab-data:/var/opt/gitlab"
     shm_size: "256m"
     # restart: always
     restart: unless-stopped
-
-volumes:
-  gitlab-data:
-    external: true
+# Custom volume
+# volumes:
+#   gitlab-data:
+#     external: true
