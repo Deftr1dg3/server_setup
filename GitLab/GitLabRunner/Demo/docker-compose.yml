@@ -1,0 +1,14 @@
+services:
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    container_name: gitlab-runner
+    restart: always
+    # # To access host machine namespace from the container
+    # network_mode: "host"
+    # For Linux
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # Map config file if exists
+      # - ./config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock

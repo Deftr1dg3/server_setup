@@ -15,6 +15,7 @@ services:
       - "80:80"
       - "443:443"
       - "2222:22"
+      - "9090:9090"
     volumes:
       - "$GITLAB_HOME/config:/etc/gitlab"
       - "$GITLAB_HOME/logs:/var/log/gitlab"
@@ -23,7 +24,24 @@ services:
     shm_size: "256m"
     # restart: always
     restart: unless-stopped
-# Custom volume
+  # -----------------------------------------------------------------------------
+  # Grapahana container -----------
+  # -----------------------------------------------------------------------------
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - "./grafana_storage:/var/lib/grafana"
+    ports:
+      - "3000:3000" # Grafana default port
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Set admin password
+    depends_on:
+      - gitlab
+    restart: unless-stopped
+# -----------------------------------------------------------------------------
+# Custom volumes ----------------
+# -----------------------------------------------------------------------------
 # volumes:
 #   gitlab-data:
 #     external: true

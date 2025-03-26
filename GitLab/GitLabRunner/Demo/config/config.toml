@@ -1,0 +1,26 @@
+
+concurrent = 1
+check_interval = 0
+
+[[runners]]
+  name = "docker-local-runner"
+  url = "http://host.docker.internal:80/"  # Change to match your GitLab server URL
+  token = "glrt-t1_5MSZsso7QsyzBwdRTmoS"            # Replace with your runner registration token
+  executor = "docker"
+
+  [runners.docker]
+    tls_verify = false
+    image = "alpine:latest"                     # Default image for jobs, you can change it
+    privileged = true                           # Needed for Docker-in-Docker builds
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = [
+      "/var/run/docker.sock:/var/run/docker.sock",  # Allow Docker access
+      "/cache"                                      # Optional: job cache directory
+    ]
+    shm_size = 0
+
+  [runners.cache]
+    [runners.cache.s3]    # Leave empty unless using S3 cache
+    [runners.cache.gcs]   # Leave empty unless using Google Cloud cache

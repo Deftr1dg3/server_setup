@@ -32,6 +32,7 @@ services:
       - "./acme-challenge:/usr/share/nginx/html/.well-known/acme-challenge:ro"
       - "./cert/live/sethlab.net/fullchain.pem:/etc/nginx/cert/fullchain.pem:ro"
       - "./cert/live/sethlab.net/privkey.pem:/etc/nginx/cert/privkey.pem:ro"
+    # For Linux
     extra_hosts:
       - "host.docker.internal:host-gateway"
     # "host" networking replicates '--network host'

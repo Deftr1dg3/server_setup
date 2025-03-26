@@ -7,3 +7,5 @@ GitLab/data/
 GitLab/TestProject
 
 Nginx/cert/
+
+grafana_storage/

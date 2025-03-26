@@ -146,7 +146,7 @@ gitlab_rails['backup_upload_remote_directory'] = 'gitlab-backups'
 # Prometheus:
 
 prometheus['enable'] = true
-prometheus['listen_address'] = 'localhost:9090'
+prometheus['listen_address'] = '0.0.0.0:9090'
 
 # Grafana:
 
